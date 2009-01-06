@@ -1,17 +1,6 @@
-h4. Overview
+h1. Olympiano
 
-Olympiano will keep generating a continuous degree/chord progression and then rotate in improv lambdas at each chord to play their
-own interpretation of the chord.  These lambdas may be as laid back as :george, who just holds down all the notes in a chord, to the frantic
-arpeggios of :hammett.  Then there's :inward_a who sort of plays spin-the-bottle with the chords he's given to play.  :peggy plays the straight
-up-and-down arpeggio.
-
-I'm using some programming paradigms found in Archaeopteryx.  Many thanks to Giles Bowkett for his brilliant project.
-
-Olympiano doesn't have a strong enough concept of rhythm and tempo to enforce beats and measures.  Different improv lambdas
-have permission to hog the spotlight for as long as they wish.  That has pros and cons.  For that reason I think it's more 
-suited for generating that soothing background classical piano sound.  But I could be wrong.
-
-h4. Installation
+h2. Installation
 
 First, grab rb-music-theory
 
@@ -23,8 +12,22 @@ First, grab rb-music-theory
 </code></pre>
 
 h4. Running Olympiano
+
 <pre><code>
   cd olympiano
   ruby launcher.rb
 </code>
 </pre>
+
+h2. Overview
+
+Olympiano will keep generating a continuous degree/chord progression and then rotate in improv lambdas at each chord to play their
+own interpretation of the chord.  These lambdas may be as laid back as :george, who just holds down all the notes in a chord, to the frantic
+arpeggios of :hammett.  Then there's :inward_a who sort of plays spin-the-bottle with the chords he's given to play.  :peggy plays the straight
+up-and-down arpeggio.
+
+I'm using some programming paradigms found in Archaeopteryx.  Many thanks to Giles Bowkett for his brilliant project.
+
+Olympiano doesn't have a strong enough concept of rhythm and tempo to enforce beats and measures.  Different improv lambdas
+have permission to hog the spotlight for as long as they wish.  That has pros and cons.  For that reason I think it's more 
+suited for generating that soothing background classical piano sound.  But I could be wrong.
