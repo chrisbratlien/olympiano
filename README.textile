@@ -28,7 +28,7 @@ own interpretation of the chord.  These lambdas may be as laid back as :george, 
 arpeggios of :hammett.  Then there's :inward_a who sort of plays spin-the-bottle with the chords he's given to play.  :peggy plays the straight
 up-and-down arpeggio.
 
-I'm using some programming paradigms found in Archaeopteryx.  Many thanks to Giles Bowkett for his brilliant project.
+I'm using some programming paradigms found in <a href="https://github.com/gilesbowkett/archaeopteryx/tree">Archaeopteryx</a>.  Many thanks to Giles Bowkett for his brilliant project.
 
 Olympiano doesn't have a strong enough concept of rhythm and tempo to enforce beats and measures.  Different improv lambdas
 have permission to hog the spotlight for as long as they wish.  That has pros and cons.  For that reason I think it's more 
