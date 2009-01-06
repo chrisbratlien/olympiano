@@ -13,7 +13,7 @@ First, grab rb-music-theory
 
 Runnining Olympiano:
 
-First, hook up your MIDI receiver software how you want it.  If you use Propellerhead Reason, I included concert-piano.rns
+First, hook up your MIDI receiver how you want it.  If you use Propellerhead Reason, I included concert-piano.rns
 Then...
 <pre><code>
   cd olympiano
