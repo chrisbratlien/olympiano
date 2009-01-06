@@ -12,6 +12,9 @@ First, grab rb-music-theory
 </code></pre>
 
 Runnining Olympiano:
+
+First, hook up your MIDI receiver software how you want it.  If you use Propellerhead Reason, I included concert-piano.rns
+Then...
 <pre><code>
   cd olympiano
   ruby launcher.rb
