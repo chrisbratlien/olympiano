@@ -11,8 +11,7 @@ First, grab rb-music-theory
 # rake install
 </code></pre>
 
-h4. Running Olympiano
-
+Runnining Olympiano:
 <pre><code>
   cd olympiano
   ruby launcher.rb
