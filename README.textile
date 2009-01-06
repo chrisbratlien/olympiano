@@ -32,4 +32,4 @@ I'm using some programming paradigms found in <a href="https://github.com/gilesb
 
 Olympiano doesn't have a strong enough concept of rhythm and tempo to enforce beats and measures.  Different improv lambdas
 have permission to hog the spotlight for as long as they wish.  That has pros and cons.  For that reason I think it's more 
-suited for generating that soothing background classical piano sound.  But I could be wrong.
+suited for generating that background-music classical piano sound.  But I could be wrong.
