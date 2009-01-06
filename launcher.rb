@@ -56,21 +56,21 @@ def perform(attributes = {})
     # I'm unsure this "FIX" is worth persuing...
     
  
-    puts mini_queue.inspect.to_s
+    #puts mini_queue.inspect.to_s
     len = mini_queue.inject(0.0){|sum,i| sum + i[1]}
     stats << len
     
     if len < base_duration
       diff = base_duration - len
       mini_queue.last[1] += diff
-      puts "FIXED #{len} #{mini_queue.inspect.to_s}"
+      #puts "FIXED #{len} #{mini_queue.inspect.to_s}"
     end
     queue += mini_queue
   }
 
-   puts stats.inspect.to_s
-   puts "min #{stats.min}"
-   puts "max #{stats.max}"
+   #puts stats.inspect.to_s
+   #puts "min #{stats.min}"
+   #puts "max #{stats.max}"
   #puts queue.inspect.to_s
 
   queue.each{|n,dur| 
