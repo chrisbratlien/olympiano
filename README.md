@@ -1,4 +1,4 @@
-h4. Overview
+#### Overview
 
 Olympiano will keep generating a continuous degree/chord progression and then rotate in improv lambdas at each chord to play their
 own interpretation of the chord.  These lambdas may be as laid back as :george, who just holds down all the notes in a chord, to the frantic
@@ -11,20 +11,27 @@ Olympiano doesn't have a strong enough concept of rhythm and tempo to enforce be
 have permission to hog the spotlight for as long as they wish.  That has pros and cons.  For that reason I think it's more 
 suited for generating that soothing background classical piano sound.  But I could be wrong.
 
-h4. Installation
+
+#### Dependencies
+
+- [chrisbratlien/rb-music-theory](https://github.com/chrisbratlien/rb-music-theory)
+- [arirusso/micromidi](https://github.com/arirusso/micromidi)
+
+#### Installation
 
 First, grab rb-music-theory
 
-<pre><code>
-# git clone git://github.com/chrisbratlien/rb-music-theory.git 
-# cd rb-music-theory
-# rake gem
-# rake install
-</code></pre>
+```bash
+git clone git://github.com/chrisbratlien/rb-music-theory.git 
+cd rb-music-theory
+gem install rb-music-theory --user-install
+gem install micromidi --user-install
+```
 
-h4. Running Olympiano
-<pre><code>
-  cd olympiano
-  ruby launcher.rb
-</code>
-</pre>
+
+
+#### Running Olympiano
+```bash
+cd olympiano
+ruby launcher.rb
+```

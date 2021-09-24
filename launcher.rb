@@ -1,16 +1,10 @@
 alias :L :lambda
 
 require 'rubygems'
-require 'midiator'
-require 'rb-music-theory' #git clone git://github.com/chrisbratlien/rb-music-theory.git
+require 'midi'
+require 'rb-music-theory'
  
-midi = MIDIator::Interface.new
-midi.autodetect_driver
-#midi = MIDIator::Interface.new
-#midi.use :dls_synth
-
-
-include MIDIator::Notes
+midi = @output = UniMIDI::Output.gets
 
 def perform(attributes = {})	
   %w{midi root_note scale_name chord_picker progression improv improv_set logging}.each do |attribute|
@@ -75,9 +69,10 @@ def perform(attributes = {})
 
   queue.each{|n,dur| 
     if @logging
-      #puts [n,dur].inspect.to_s
+      puts [n,dur].inspect.to_s
     end
-    @midi.play n, dur
+    #@midi.play n, dur
+    MIDI.using(@output).play n, dur
   }
 
   sleep(2)
@@ -112,7 +107,8 @@ end
 # DANGER, THIS CHORD LADDER IS TOO SIMPLE, FORMULAIC, RIGID, ETC, AND NOT MEANT TO BE FOR EVERY TYPE OF SCALE
 # BUT IT'S ALL I HAVE AT THIS POINT
 ladders = {}
-Note.scale_methods.each{|m| ladders[m] = {}
+Note.scale_methods.each{|m| 
+  ladders[m] = {}
 	# i know, cheesy default
 	(1..20).each{|d| ladders[m][d] = [1]}
 
@@ -124,6 +120,8 @@ Note.scale_methods.each{|m| ladders[m] = {}
 	ladders[m][6] = [2,4]
 	ladders[m][7] = [1,6]
 }
+#puts ladders
+
 
 ladders[:major_scale] = {}
 ladders[:major_scale][1] = [3,4,5,6] #pulled out of my ass
@@ -137,20 +135,14 @@ ladders[:major_scale][7] = [1,6]
 #get the next octave in (assuming 7-degree scales)
 (8..15).each{|n| ladders[:major_scale][n] = ladders[:major_scale][n-7]}  
 
-
-puts "If you have Propellerhead Reason, try picking one of these:"
-puts "Combinator->Piano and Keyboard->Accoustic Piano->Concert Piano"
-puts "Combinator->Combinator Patches->Guitar and Plucked->Misc Guitar and Plucked->Whale Calls"
-puts
-puts
-
 def next_degree(start,ladder)
+  puts "next_degree( start: #{start}, ladder: #{ladder} )"
   # also may pick from next octave (assuming 7-degree scales)
   ladder[start].map{|deg| [deg,deg + 7] }.flatten.pick
 end
   
 def generate_progression(ladder)
-
+  puts "gp: ladder: #{ladder}"
   intro = [1]
   3.times { intro << [1,4,5].pick}
   verse = [1]
@@ -167,17 +159,14 @@ def generate_progression(ladder)
   prog = intro + verse + chorus  + verse + chorus + intro + [1]
 
 
-  #new_prog = [rand(7) +1] #initial degree
-  #new_prog = [1]
-  #(rand(8) + 48).times { new_prog << next_degree(new_prog.last,ladder) }	
-  #new_prog
   prog
 end
 
 
 harmonized_root_chord_picker = L {|scale,degree,root_chord_name|
+  puts "root chord name: #{root_chord_name} (class: #{root_chord_name.class} string: #{root_chord_name.to_s}"
   chord = scale.harmonized_chord(degree,root_chord_name)
-  [chord,'harmonized I ' + root_chord_name]
+  [chord,'harmonized I ' + root_chord_name.to_s]
 }  
   
 degree_chord_picker = L {|scale,degree,root_chord_name| 
@@ -207,7 +196,13 @@ while true do
 		#:scale_name => L { "minor_pentatonic_scale"},		
 		#:chord_picker => harmonized_root_chord_picker,
 		:chord_picker => [degree_chord_picker,harmonized_root_chord_picker].pick,
-		:progression => L {|scale_name| generate_progression(ladders[scale_name])},
+		:progression => L {|scale_name| 
+      puts "Scale name #{scale_name}"
+      #puts "inside, ladders is: #{ladders}"
+      ladder = ladders[scale_name.to_sym]
+      puts "my ladder: #{ladder}"
+      generate_progression(ladder)
+    },
 		#:progression => L {[1,4,5,2,8,4,8,4,9,7,2,5,1,3,6,9,5,7,2,5,6,2,7,5,8,4,1,7,8]},
 		#:improv => L{|orig,set| orig}, #picks one improv at beginning to use on all chords of progression 
 		:improv => L{|orig,set| set.keys.pick}, #pick an improv at every chord change in the progression
